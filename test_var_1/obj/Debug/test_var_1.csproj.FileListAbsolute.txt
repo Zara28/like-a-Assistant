@@ -1,0 +1,6 @@
+D:\моя папка\my_projects\test_var_1\bin\Debug\test_var_1.exe.config
+D:\моя папка\my_projects\test_var_1\bin\Debug\test_var_1.exe
+D:\моя папка\my_projects\test_var_1\bin\Debug\test_var_1.pdb
+D:\моя папка\my_projects\test_var_1\obj\Debug\test_var_1.csprojAssemblyReference.cache
+D:\моя папка\my_projects\test_var_1\obj\Debug\test_var_1.exe
+D:\моя папка\my_projects\test_var_1\obj\Debug\test_var_1.pdb
