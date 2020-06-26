@@ -17,7 +17,35 @@ namespace test_var_1
             Console.WriteLine("Впишите папку для сортировки");
             string adress = "";
             adress = Console.ReadLine();
-            string[] fileEntries = Directory.GetFiles(adress);
+            Create_cat(adress);
+            Sort(adress);
+            Thread.Sleep(100);
+        }
+        public static void Create_cat(string adr)
+        {
+            string[] fileEntries = Directory.GetFiles(adr);
+            string[] name;
+            string[] ras;
+            foreach (string fileName in fileEntries)
+            {
+                name = fileName.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries);
+                ras = name[name.Length - 1].Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string cat_name in Config.cat)
+                {
+                    if (cat_name.Contains(ras[ras.Length - 1]))
+                    {
+                        string[] n = cat_name.Split(new string[] {"="}, StringSplitOptions.RemoveEmptyEntries);
+                        Directory.CreateDirectory(adr + "\\" + n[0]);
+
+                    }
+                }
+
+            }
+           
+        }
+        public static void Sort(string adr)
+        {
+            string[] fileEntries = Directory.GetFiles(adr);
             foreach (string fileName in fileEntries)
             {
                 string[] ras;
@@ -28,42 +56,29 @@ namespace test_var_1
                     ras = name[name.Length - 1].Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries);
                     try
                     {
-                        if (ras[ras.Length-1] == "zip" || ras[ras.Length - 1] == "rar")
+                        foreach (string cat_name in Config.cat)
                         {
-                            File.Move(fileName, adress + "/zip/" + name[name.Length - 1]);
-                        }
-                        else if (ras[ras.Length - 1] == "doc" || ras[ras.Length - 1] == "docx"|| ras[ras.Length - 1] == "pdf")
-                        {
-                            File.Move(fileName, adress + "/docx/" + name[name.Length - 1]);
-                        }
-                        else if (ras[ras.Length - 1] == "mp3")
-                        {
-                            File.Move(fileName, adress + "/music/" + name[name.Length - 1]);
-                        }
-                        else if (ras[ras.Length - 1] == "jpg" || ras[ras.Length - 1] == "jpeg")
-                        {
-                            File.Move(fileName, adress + "/img/" + name[name.Length - 1]);
-                        }
-                        else
-                        {
-                            File.Move(fileName, adress + "/others/" + name[name.Length - 1]);
+                            if (cat_name.Contains(ras[ras.Length - 1]))
+                            {
+                                string[] n = cat_name.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                                File.Move(fileName, adr + "\\" + n[0] + "\\" + name[name.Length - 1]);
+
+                            }
                         }
                     }
-                   catch(Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e);
-                        Thread.Sleep(1000);
+                        Thread.Sleep(10000);
                     }
                 }
-               catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e);
 
                     Thread.Sleep(100);
                 }
             }
-
-            Thread.Sleep(100);
         }
     }
 }
