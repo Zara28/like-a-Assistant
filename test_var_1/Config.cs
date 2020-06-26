@@ -17,5 +17,7 @@ namespace test_var_1
             "Python code= py",
             "Code= cpp",
             "Presentation= pptx"};
+        public static List<string> command = new List<string>() { "Sort", "Show directory", "Change directory",
+            "Add directory"};
     }
 }
